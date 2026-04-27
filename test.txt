@@ -1,0 +1,94 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Booking Sequence Diagram">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <!-- Actors -->
+        <mxCell id="user" value="User" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="100" y="80" width="40" height="80" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="bookingUI" value="BookingUI" style="shape=rectangle;rounded=1;fillColor=#1f4e79;fontColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="300" y="80" width="120" height="50" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="booking" value="Booking" style="shape=rectangle;rounded=1;fillColor=#145a32;fontColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="550" y="80" width="120" height="50" as="geometry"/>
+        </mxCell>
+
+        <!-- Lifelines -->
+        <mxCell id="lifeline_user" style="shape=line;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="120" y="160" width="1" height="500" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="lifeline_ui" style="shape=line;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="360" y="160" width="1" height="500" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="lifeline_booking" style="shape=line;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="610" y="160" width="1" height="500" as="geometry"/>
+        </mxCell>
+
+        <!-- Messages -->
+        <mxCell id="m1" value="1. Start UI" style="endArrow=block;" edge="1" parent="1" source="lifeline_user" target="lifeline_ui">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="120" y="200" as="sourcePoint"/>
+            <mxPoint x="360" y="200" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="m2" value="2. populateFilters()&#xa;populateClassSelect()" style="endArrow=open;" edge="1" parent="1" source="lifeline_ui" target="lifeline_ui">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="360" y="240" as="sourcePoint"/>
+            <mxPoint x="360" y="280" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="m3" value="3. Enter booking details" style="endArrow=block;" edge="1" parent="1" source="lifeline_user" target="lifeline_ui">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="120" y="300" as="sourcePoint"/>
+            <mxPoint x="360" y="300" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="m4" value="4. submitBooking()" style="endArrow=block;" edge="1" parent="1" source="lifeline_ui" target="lifeline_booking">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="360" y="340" as="sourcePoint"/>
+            <mxPoint x="610" y="340" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="m5" value="5. validateEmail()&#xa;validateName()" style="endArrow=open;" edge="1" parent="1" source="lifeline_booking" target="lifeline_booking">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="610" y="380" as="sourcePoint"/>
+            <mxPoint x="610" y="420" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="m6" value="6. decrementSpots()&#xa;saveBooking()" style="endArrow=open;" edge="1" parent="1" source="lifeline_booking" target="lifeline_booking">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="610" y="440" as="sourcePoint"/>
+            <mxPoint x="610" y="480" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="m7" value="7. Return booking OK" style="dashed=1;endArrow=open;" edge="1" parent="1" source="lifeline_booking" target="lifeline_ui">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="610" y="520" as="sourcePoint"/>
+            <mxPoint x="360" y="520" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="m8" value="8. Show confirmation" style="dashed=1;endArrow=open;" edge="1" parent="1" source="lifeline_ui" target="lifeline_user">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="360" y="560" as="sourcePoint"/>
+            <mxPoint x="120" y="560" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

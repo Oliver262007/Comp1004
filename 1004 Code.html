@@ -1,1 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Sports Centre - Schedule & Booking</title>
+  <link rel="stylesheet" href="1004 Code.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="top-left">
+      <div class="title">Sports Centre</div>
+    </div>
+    <div class="top-right">
+      <div class="status">Closes today 20:45</div>
+    </div>
+  </header>
 
+  <main class="app">
+    <aside class="panel filters" id="filtersPanel">
+      <h2>Filters</h2>
+
+      <label>Activity
+        <select id="activityFilter">
+          <option value="">All activities</option>
+          <option value="Yoga">Yoga</option>
+          <option value="Spin">Spin</option>
+          <option value="Pilates">Pilates</option>
+          <option value="Boxing">Boxing</option>>
+          <option value="Running Club">Running Club</option>
+          <option value="Swim Lanes">Swim Lanes</option>
+          <option value="Family Swim">Family Swim</option>
+          <option value="Climbing">Climbing</option>
+          <option value="Table Tennis">Table Tennis</option>
+          <option value="Badminton">Badminton</option>
+        </select>
+      </label>
+
+      <label>Instructor
+        <select id="instructorFilter">
+          <option value="">All instructors</option>
+          <option value="Olly">Olly</option>
+          <option value="Jacob">Jacob</option>
+          <option value="Tom">Tom</option>
+          <option value="Harvey">Harvey</option>
+          <option value="Fred">Fred</option>
+          <option value="Amy">Amy</option>
+          <option value="Hannah">Hannah</option>
+        </select>
+      </label>
+
+      <label>Date
+        <input id="dateFilter" type="date" />
+      </label>
+
+      <label>Time from
+        <input id="timeFrom" type="time" />
+      </label>
+
+      <label>Time to
+        <input id="timeTo" type="time" />
+      </label>
+
+      <div class="filter-actions">
+        <button id="applyBtn" class="btn primary">Apply</button>
+        <button id="clearBtn" class="btn">Reset</button>
+      </div>
+    </aside>
+
+    <section class="panel schedule" id="schedulePanel">
+      <div class="panel-header">
+        <h2>Live Class Schedule</h2>
+        <div class="now">Now: <span id="nowText"></span></div>
+      </div>
+
+      <div id="scheduleList" class="schedule-list"></div>
+      <div id="noResults" class="empty" style="display:none">No classes match your filters.</div>
+
+      <div class="banner">
+        <div class="banner-text">Free sessions included with Lessons*</div>
+        <button class="btn orange">Book online</button>
+      </div>
+    </section>
+
+    <aside class="panel booking" id="bookingPanel">
+      <h2>Book a class</h2>
+      <form id="bookingForm" novalidate>
+        <label>Class
+          <select id="classSelect">
+            <option value="">-- choose a class --</option>
+            <option value="c1">Yoga - </option>
+            <option value="c2">Spin</option>
+            <option value="c3">Pilates</option>
+            <option value="c4">Boxing</option>
+            <option value="c16">Running Club</option>
+            <option value="c17">Swim Lanes</option>
+            <option value="c18">Family Swim</option>
+            <option value="c19">Climbing</option>
+            <option value="c20">Table Tennis</option>
+            <option value="c21">Badminton</option>
+          </select>
+        </label>
+
+        <label>Your name
+          <input id="name" type="text" maxlength="80" />
+        </label>
+
+        <label>Email
+          <input id="email" type="email" maxlength="120" />
+        </label>
+
+        <div class="form-actions">
+          <button type="submit" class="btn primary">Book</button>
+          <button type="button" id="resetBtn" class="btn">Reset</button>
+        </div>
+      </form>
+
+      <div id="confirm" class="confirm" style="display:none">
+        <p id="confirmText"></p>
+        <button id="closeConfirm" class="btn">OK</button>
+      </div>
+
+    </aside>
+  </main>
+
+  <footer class="footer">
+    <small>© Sports Centre — Demo app</small>
+  </footer>
+
+  <script src="test.js"></script>
+</body>
+</html>
