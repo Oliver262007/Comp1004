@@ -67,6 +67,7 @@
       </div>
     </aside>
 
+
     <section class="panel schedule" id="schedulePanel">
       <div class="panel-header">
         <h2>Live Class Schedule</h2>
@@ -118,6 +119,15 @@
       <div id="confirm" class="confirm" style="display:none">
         <p id="confirmText"></p>
         <button id="closeConfirm" class="btn">OK</button>
+      </div>
+
+      <div style="margin-top:16px">
+        <button id="exportJsonBtn" class="btn">Export JSON</button>
+
+        <label class="btn" style="display:inline-block; cursor:pointer;">
+          Import JSON
+          <input type="file" id="importJsonInput" accept="application/json" hidden>
+        </label>
       </div>
 
     </aside>

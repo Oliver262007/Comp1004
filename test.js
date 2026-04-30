@@ -51,6 +51,14 @@ function escapeHtml(s) {
           .replace(/"/g,'&quot;').replace(/'/g,'&#39;');
 }
 
+// used for json input & export
+var exportJsonBtn = document.getElementById('exportJsonBtn');
+var importJsonInput = document.getElementById('importJsonInput');
+
+exportJsonBtn.onclick = exportClassesToJson;
+importJsonInput.onchange = importClassesFromJson;
+
+
 var activityFilter = document.getElementById('activityFilter');
 var instructorFilter = document.getElementById('instructorFilter');
 var dateFilter = document.getElementById('dateFilter');
@@ -315,6 +323,62 @@ function generateAndStoreToken(seed, cb) {
     try { localStorage.setItem('booking_token', btoa(seed)); } catch(e){}
     if (typeof cb === 'function') cb();
   }
+}
+
+unction exportClassesToJson() {
+  var dataStr = JSON.stringify(classes, null, 2);
+  var blob = new Blob([dataStr], { type: 'application/json' });
+  var url = URL.createObjectURL(blob);
+
+  var a = document.createElement('a');
+  a.href = url;
+  a.download = 'classes-export.json';
+  document.body.appendChild(a);
+  a.click();
+
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+function importClassesFromJson(e) {
+  var file = e.target.files[0];
+  if (!file) return;
+
+  var reader = new FileReader();
+
+  reader.onload = function(evt) {
+    try {
+      var parsed = JSON.parse(evt.target.result);
+
+      if (!Array.isArray(parsed)) {
+        alert('Invalid file format: expected an array');
+        return;
+      }
+
+      // Basic validation of object shape
+      for (var i = 0; i < parsed.length; i++) {
+        if (!parsed[i].id || !parsed[i].activity || !parsed[i].date) {
+          alert('Invalid class data detected');
+          return;
+        }
+      }
+
+      classes = parsed;
+
+      // Persist + refresh UI
+      localStorage.setItem('classes_data', JSON.stringify(classes));
+      populateFilters();
+      populateClassSelect();
+      renderSchedule(classes);
+
+      alert('Classes imported successfully ✅');
+
+    } catch (err) {
+      alert('Error reading JSON file');
+    }
+  };
+
+  reader.readAsText(file);
+  e.target.value = ''; // allow re-importing same file
 }
 
 function arrayBufferToBase64(buf) {
